@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academico-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/academico-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,10 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.academico.executor": "Run",
     "Spring Boot.api.executor": "Run",
+    "Spring Boot.auth.executor": "Run",
     "Spring Boot.config-server.executor": "Run",
+    "Spring Boot.estudiante.executor": "Run",
+    "Spring Boot.usuario.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "mayckol-mardones",
     "kotlin-language-version-configured": "true",
@@ -81,7 +82,10 @@
             <map>
               <entry key="academico" value="STOPPED" />
               <entry key="api" value="STOPPED" />
+              <entry key="auth" value="STOPPED" />
               <entry key="config-server" value="STOPPED" />
+              <entry key="estudiante" value="STOPPED" />
+              <entry key="usuario" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -201,7 +205,7 @@
       <workItem from="1777876580273" duration="584000" />
       <workItem from="1777877184256" duration="2333000" />
       <workItem from="1777930242743" duration="1548000" />
-      <workItem from="1777931815488" duration="2785000" />
+      <workItem from="1777931815488" duration="6886000" />
     </task>
     <servers />
   </component>
