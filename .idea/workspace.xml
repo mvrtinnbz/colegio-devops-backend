@@ -6,12 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/AuthServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,10 +66,16 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.academico.executor": "Run",
+    "Spring Boot.anotacion.executor": "Run",
     "Spring Boot.api.executor": "Run",
+    "Spring Boot.asistencia.executor": "Run",
     "Spring Boot.auth.executor": "Run",
+    "Spring Boot.comunicacion.executor": "Run",
     "Spring Boot.config-server.executor": "Run",
     "Spring Boot.estudiante.executor": "Run",
+    "Spring Boot.evaluacion.executor": "Run",
+    "Spring Boot.notificacion.executor": "Run",
+    "Spring Boot.reporte.executor": "Run",
     "Spring Boot.usuario.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "mayckol-mardones",
@@ -81,10 +102,16 @@
           <value>
             <map>
               <entry key="academico" value="STOPPED" />
+              <entry key="anotacion" value="STOPPED" />
               <entry key="api" value="STOPPED" />
+              <entry key="asistencia" value="STOPPED" />
               <entry key="auth" value="STOPPED" />
+              <entry key="comunicacion" value="STOPPED" />
               <entry key="config-server" value="STOPPED" />
               <entry key="estudiante" value="STOPPED" />
+              <entry key="evaluacion" value="STOPPED" />
+              <entry key="notificacion" value="STOPPED" />
+              <entry key="reporte" value="STOPPED" />
               <entry key="usuario" value="STOPPED" />
             </map>
           </value>
@@ -92,7 +119,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.config-server">
+  <component name="RunManager" selected="Spring Boot.usuario">
     <configuration name="academico" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="academico-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.academico_service.AcademicoServiceApplication" />
@@ -206,6 +233,9 @@
       <workItem from="1777877184256" duration="2333000" />
       <workItem from="1777930242743" duration="1548000" />
       <workItem from="1777931815488" duration="6886000" />
+      <workItem from="1777991062847" duration="5846000" />
+      <workItem from="1778012596400" duration="605000" />
+      <workItem from="1778014513098" duration="14083000" />
     </task>
     <servers />
   </component>

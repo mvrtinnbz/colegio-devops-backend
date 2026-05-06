@@ -42,6 +42,15 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // --- NUEVO ENDPOINT PARA FEIGN CLIENT ---
+    @Operation(summary = "Obtener usuario por Email", description = "Busca un usuario específico utilizando su correo electrónico. Usado principalmente por auth-service.")
+    @GetMapping("/buscar-por-email")
+    public ResponseEntity<Usuario> buscarPorEmail(@RequestParam("email") String email) { // <-- Pequeño ajuste aquí
+        return usuarioService.obtenerPorEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @Operation(summary = "Actualizar un usuario", description = "Sobrescribe los datos de un usuario existente. Pasa por validación de campos.")
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @Valid @RequestBody Usuario detalles) {
