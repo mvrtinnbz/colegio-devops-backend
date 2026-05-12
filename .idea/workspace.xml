@@ -4,33 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57067d58-f215-4689-bbad-2dd5f25f9c76" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inventory-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/shopsmart/inventory_service/InventoryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/shopsmart/inventory_service/InventoryServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/shopsmart/inventory_service/Producto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/shopsmart/inventory_service/InventoryServiceApplicationTests.java" beforeDir="false" />
+    <list default="true" id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/AuthServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -38,44 +42,200 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
-  <component name="ProjectId" id="3BrcWSk9qKCvkHGnLpxyBmG1Xwr" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3DFGIqowSH5HplWKppZVcrVHvNH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.academico-service [clean].executor": "Run",
+    "Maven.academico-service [package].executor": "Run",
+    "Maven.anotacion-service [clean].executor": "Run",
+    "Maven.anotacion-service [package].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.academico.executor": "Run",
+    "Spring Boot.anotacion.executor": "Run",
+    "Spring Boot.api.executor": "Run",
+    "Spring Boot.asistencia.executor": "Run",
+    "Spring Boot.auth.executor": "Run",
+    "Spring Boot.comunicacion.executor": "Run",
+    "Spring Boot.config-server.executor": "Run",
+    "Spring Boot.estudiante.executor": "Run",
+    "Spring Boot.evaluacion.executor": "Run",
+    "Spring Boot.notificacion.executor": "Run",
+    "Spring Boot.reporte.executor": "Run",
+    "Spring Boot.usuario.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "mayckol-mardones",
     "kotlin-language-version-configured": "true",
+    "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="UsuarioServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="academico" value="STOPPED" />
+              <entry key="anotacion" value="STOPPED" />
+              <entry key="api" value="STOPPED" />
+              <entry key="asistencia" value="STOPPED" />
+              <entry key="auth" value="STOPPED" />
+              <entry key="comunicacion" value="STOPPED" />
+              <entry key="config-server" value="STOPPED" />
+              <entry key="estudiante" value="STOPPED" />
+              <entry key="evaluacion" value="STOPPED" />
+              <entry key="notificacion" value="STOPPED" />
+              <entry key="reporte" value="STOPPED" />
+              <entry key="usuario" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.usuario">
+    <configuration name="academico" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="academico-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.academico_service.AcademicoServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="anotacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="anotacion-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.anotacion_service.AnotacionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.api_gateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="asistencia" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="asistencia-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.asistencia_service.AsistenciaServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="auth" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.auth_service.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="comunicacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="comunicacion-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.comunicacion_service.ComunicacionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="config-server" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.config_server.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="estudiante" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="estudiante-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.estudiante_service.EstudianteServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="evaluacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="evaluacion-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.evaluacion_service.EvaluacionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="notificacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="notificacion-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.notificacion_service.NotificacionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="reporte" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="reporte-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.reporte_service.ReporteServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="usuario" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="usuario-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.usuario_service.UsuarioServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.config-server" />
+      <item itemvalue="Spring Boot.notificacion" />
+      <item itemvalue="Spring Boot.academico" />
+      <item itemvalue="Spring Boot.anotacion" />
+      <item itemvalue="Spring Boot.api" />
+      <item itemvalue="Spring Boot.asistencia" />
+      <item itemvalue="Spring Boot.auth" />
+      <item itemvalue="Spring Boot.comunicacion" />
+      <item itemvalue="Spring Boot.estudiante" />
+      <item itemvalue="Spring Boot.evaluacion" />
+      <item itemvalue="Spring Boot.reporte" />
+      <item itemvalue="Spring Boot.usuario" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="57067d58-f215-4689-bbad-2dd5f25f9c76" name="Changes" comment="" />
-      <created>1775250661712</created>
+      <changelist id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="" />
+      <created>1777870327524</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1775250661712</updated>
-      <workItem from="1775250665130" duration="138000" />
+      <updated>1777870327524</updated>
+      <workItem from="1777870329149" duration="686000" />
+      <workItem from="1777875212216" duration="813000" />
+      <workItem from="1777876082951" duration="429000" />
+      <workItem from="1777876580273" duration="584000" />
+      <workItem from="1777877184256" duration="2333000" />
+      <workItem from="1777930242743" duration="1548000" />
+      <workItem from="1777931815488" duration="6886000" />
+      <workItem from="1777991062847" duration="5846000" />
+      <workItem from="1778012596400" duration="605000" />
+      <workItem from="1778014513098" duration="14083000" />
     </task>
     <servers />
   </component>
