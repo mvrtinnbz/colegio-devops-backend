@@ -88,3 +88,37 @@ FULLSTACK-III/
 | config-server | Configuración centralizada |
 
 ---
+#  Stack Tecnológico
+
+## Backend
+
+- Java 21
+- Spring Boot 3.2.5
+- Spring Cloud 2023.0.1
+- Spring Security
+- Spring Cloud Gateway
+- Spring Cloud Config
+- Eureka Netflix
+- JWT (JSON Web Token)
+- Maven
+
+## Base de Datos
+
+- MySQL 8
+
+## DevOps e Infraestructura
+
+- Docker
+- Docker Compose
+
+## Testing
+
+- JUnit 5
+- Mockito
+
+## Control de Versiones
+
+- Git
+- GitHub
+
+---
