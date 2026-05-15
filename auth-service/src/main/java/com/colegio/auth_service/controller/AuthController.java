@@ -49,7 +49,9 @@ public class AuthController {
 
                 // 3. Si coinciden, generamos el token con su ROL REAL
                 String token = jwtProvider.createToken(usuarioReal.getEmail(), usuarioReal.getRol());
-                return ResponseEntity.ok(new TokenDto(token));
+
+                // 4. Enviamos el token Y EL ROL en la respuesta
+                return ResponseEntity.ok(new TokenDto(token, usuarioReal.getRol()));
 
             } else {
                 // Si la contraseña no coincide
@@ -57,6 +59,9 @@ public class AuthController {
             }
 
         } catch (Exception e) {
+            // Imprimimos el error real en los logs de Docker para no volar a ciegas
+            e.printStackTrace();
+
             // Si el usuario-service no encuentra el email (devuelve 404), Feign lanza una excepción.
             // La atrapamos aquí y simplemente devolvemos un 401 Unauthorized por seguridad.
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

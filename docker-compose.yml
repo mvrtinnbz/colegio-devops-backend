@@ -1,20 +1,136 @@
 services:
-
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=colegio_db
     ports:
       - "3306:3306"
     networks:
       - microservices-net
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - microservices-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   eureka-server:
     build: ./eureka-server
     container_name: eureka-server
     ports:
       - "8761:8761"
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - microservices-net
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  usuario-service:
+    build: ./usuario-service
+    container_name: usuario-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  academico-service:
+    build: ./academico-service
+    container_name: academico-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  estudiante-service:
+    build: ./estudiante-service
+    container_name: estudiante-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  asistencia-service:
+    build: ./asistencia-service
+    container_name: asistencia-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  evaluacion-service:
+    build: ./evaluacion-service
+    container_name: evaluacion-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  anotacion-service:
+    build: ./anotacion-service
+    container_name: anotacion-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  comunicacion-service:
+    build: ./comunicacion-service
+    container_name: comunicacion-service
+    depends_on:
+      - mysql-db
+      - eureka-server
+    networks:
+      - microservices-net
+
+  notificacion-service:
+    build: ./notificacion-service
+    container_name: notificacion-service
+    depends_on:
+      - eureka-server
+    networks:
+      - microservices-net
+
+  reporte-service:
+    build: ./reporte-service
+    container_name: reporte-service
+    depends_on:
+      - eureka-server
     networks:
       - microservices-net
 

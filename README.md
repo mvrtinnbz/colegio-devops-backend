@@ -1,53 +1,59 @@
 # 📚 Colegio Bernardo O’Higgins — Plataforma de Gestión Escolar Distribuida
 
-Sistema de gestión académica desarrollado bajo una arquitectura de microservicios utilizando Spring Boot, Spring Cloud y Docker.  
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge\&logo=java)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.5-brightgreen?style=for-the-badge\&logo=spring-boot)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue?style=for-the-badge\&logo=docker)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?style=for-the-badge\&logo=mysql)
+
+Sistema de gestión académica desarrollado bajo una arquitectura de microservicios utilizando Spring Boot, Spring Cloud y Docker.
+
 La plataforma busca modernizar y centralizar los procesos académicos, administrativos y comunicacionales del Colegio Bernardo O’Higgins mediante un ecosistema distribuido, escalable y seguro.
 
 ---
 
 # 👥 Integrantes
 
-- Martín Baza
-- Mayckol Mardones
-- Francisco Vera
+* Martín Baza
+* Mayckol Mardones
+* Francisco Vera
 
 ---
 
-# Objetivo del Proyecto
+# 🎯 Objetivo del Proyecto
 
 Desarrollar una plataforma web integral basada en microservicios que permita gestionar:
 
-- información académica
-- matrículas
-- asistencia
-- evaluaciones
-- anotaciones
-- comunicaciones institucionales
-- notificaciones automáticas
-- reportes académicos
+* Información académica
+* Matrículas
+* Asistencia
+* Evaluaciones
+* Anotaciones
+* Comunicaciones institucionales
+* Notificaciones automáticas
+* Reportes académicos
 
 Todo esto mediante una arquitectura desacoplada, escalable y preparada para ambientes distribuidos.
 
 ---
 
-# Arquitectura del Sistema
+# 🏗️ Arquitectura del Sistema
 
 El sistema fue diseñado utilizando una arquitectura basada en microservicios, implementando componentes especializados e independientes.
 
 ## Componentes principales
 
-- API Gateway
-- Eureka Server
-- Config Server
-- Auth Service (JWT)
-- Backend For Frontend (BFF)
-- Microservicios funcionales independientes
-- Configuración centralizada
-- Comunicación inter-servicio mediante OpenFeign
+* API Gateway
+* Eureka Server
+* Config Server
+* Auth Service (JWT)
+* Backend For Frontend (BFF)
+* Microservicios funcionales independientes
+* Configuración centralizada
+* Comunicación inter-servicio mediante OpenFeign
 
 ---
 
-# Estructura del Proyecto
+# 📁 Estructura del Proyecto
 
 ```txt
 FULLSTACK-III/
@@ -73,212 +79,117 @@ FULLSTACK-III/
 
 ---
 
-# Microservicios Implementados
+# 🔧 Microservicios Implementados
 
-| Microservicio | Responsabilidad |
-|---|---|
-| auth-service | Autenticación y generación de JWT |
-| usuario-service | Gestión de usuarios y roles |
-| estudiante-service | Gestión de estudiantes |
-| academico-service | Gestión académica |
-| evaluacion-service | Registro y cálculo de evaluaciones |
-| asistencia-service | Control de asistencia |
-| anotacion-service | Gestión de anotaciones |
-| comunicacion-service | Comunicaciones institucionales |
-| notificacion-service | Envío de notificaciones |
-| reporte-service | Backend For Frontend (BFF) |
-| api-gateway | Punto de entrada centralizado |
-| eureka-server | Service Discovery |
-| config-server | Configuración centralizada |
+| Microservicio        | Responsabilidad                    |
+| -------------------- | ---------------------------------- |
+| auth-service         | Autenticación y generación de JWT  |
+| usuario-service      | Gestión de usuarios y roles        |
+| estudiante-service   | Gestión de estudiantes             |
+| academico-service    | Gestión académica                  |
+| evaluacion-service   | Registro y cálculo de evaluaciones |
+| asistencia-service   | Control de asistencia              |
+| anotacion-service    | Gestión de anotaciones             |
+| comunicacion-service | Comunicaciones institucionales     |
+| notificacion-service | Envío de notificaciones            |
+| reporte-service      | Backend For Frontend (BFF)         |
+| api-gateway          | Punto de entrada centralizado      |
+| eureka-server        | Service Discovery                  |
+| config-server        | Configuración centralizada         |
 
 ---
 
-# Arquitectura Interna de los Microservicios
+# 🧱 Arquitectura Interna de los Microservicios
 
 Cada microservicio fue desarrollado siguiendo una estructura desacoplada basada en capas, permitiendo mantenibilidad, escalabilidad y separación clara de responsabilidades.
 
-## Estructura implementada
-
-```txt
-controller/
-service/
-repository/
-entity/
-dto/
-config/
-exception/
-client/
-```
-
----
-
 ## Capas utilizadas
 
-| Capa | Responsabilidad |
-|---|---|
-| Controller | Exposición de endpoints REST |
-| Service | Lógica de negocio |
-| Repository | Acceso a datos mediante Spring Data JPA |
-| Entity | Modelado de datos persistentes |
-| DTO | Transferencia segura de información |
-| Config | Configuración de seguridad y componentes |
-| Exception | Manejo global de excepciones |
-| Client | Comunicación entre servicios mediante OpenFeign |
+| Capa       | Responsabilidad                                 |
+| ---------- | ----------------------------------------------- |
+| Controller | Exposición de endpoints REST                    |
+| Service    | Lógica de negocio                               |
+| Repository | Acceso a datos mediante Spring Data JPA         |
+| Entity     | Modelado de datos persistentes                  |
+| DTO        | Transferencia segura de información             |
+| Config     | Configuración de seguridad y componentes        |
+| Exception  | Manejo global de excepciones                    |
+| Client     | Comunicación entre servicios mediante OpenFeign |
 
 ---
 
-## Ejemplo de implementación real
-
-```txt
-academico-service/
-├── controller/
-├── service/
-├── repository/
-├── entity/
-├── exception/
-└── config/
-```
-
-Esta estructura se replica en los distintos microservicios para asegurar consistencia arquitectónica.
-
----
-
-# Stack Tecnológico
+# 🚀 Stack Tecnológico
 
 ## Backend
 
-- Java 21
-- Spring Boot 3.2.5
-- Spring Cloud 2023.0.1
-- Spring Security
-- Spring Cloud Gateway
-- Spring Cloud Config
-- Eureka Netflix
-- OpenFeign
-- JWT (JSON Web Token)
-- Maven
-
----
+* Java 21
+* Spring Boot 3.2.5
+* Spring Cloud 2023.0.1
+* Spring Security
+* Spring Cloud Gateway
+* Spring Cloud Config
+* Eureka Netflix
+* OpenFeign
+* JWT (JSON Web Token)
+* Maven
 
 ## Base de Datos
 
-- MySQL 8
-
----
+* MySQL 8.0
 
 ## DevOps e Infraestructura
 
-- Docker
-- Docker Compose
-
----
+* Docker
+* Docker Compose
 
 ## Testing
 
-- JUnit 5
-- Mockito
-- Spring Boot Test
-
----
+* JUnit 5
+* Mockito
+* Spring Boot Test
 
 ## Control de Versiones
 
-- Git
-- GitHub
+* Git
+* GitHub
 
 ---
 
-# Patrones de Diseño y Arquitectura
+# 🧩 Patrones de Diseño y Arquitectura
 
 El proyecto implementa múltiples patrones arquitectónicos y de diseño enfocados en escalabilidad, mantenibilidad y desacoplamiento.
 
-| Patrón | Implementación |
-|---|---|
+| Patrón                     | Implementación                    |
+| -------------------------- | --------------------------------- |
 | Microservices Architecture | Separación funcional por dominios |
-| Backend For Frontend (BFF) | `reporte-service` |
-| API Gateway | `api-gateway` |
-| Repository Pattern | Spring Data JPA |
-| MVC | Controller + Service + Repository |
-| DTO Pattern | Transferencia segura de datos |
-| Dependency Injection | IoC Container de Spring |
-| Service Discovery | Eureka Server |
-| Centralized Configuration | Spring Cloud Config |
-| Global Exception Handler | `GlobalExceptionHandler.java` |
-| OpenFeign Client | Comunicación entre servicios |
+| Backend For Frontend (BFF) | reporte-service                   |
+| API Gateway                | api-gateway                       |
+| Repository Pattern         | Spring Data JPA                   |
+| MVC                        | Controller + Service + Repository |
+| DTO Pattern                | Transferencia segura de datos     |
+| Dependency Injection       | IoC Container de Spring           |
+| Service Discovery          | Eureka Server                     |
+| Centralized Configuration  | Spring Cloud Config               |
+| Global Exception Handler   | GlobalExceptionHandler.java       |
+| OpenFeign Client           | Comunicación entre servicios      |
 
 ---
 
-## Ejemplos reales del proyecto
-
-### DTO Pattern
-
-```txt
-AuthUserDto.java
-TokenDto.java
-ReporteGeneralDto.java
-MensajeDto.java
-```
-
----
-
-### Repository Pattern
-
-```txt
-UsuarioRepository.java
-EvaluacionRepository.java
-AsignaturaRepository.java
-```
-
----
-
-### Global Exception Handler
-
-```txt
-GlobalExceptionHandler.java
-```
-
-Implementado en múltiples microservicios para manejo centralizado de errores.
-
----
-
-# Comunicación Entre Microservicios
+# 🔗 Comunicación Entre Microservicios
 
 La comunicación entre servicios se implementó utilizando OpenFeign mediante clientes desacoplados.
 
-## Implementaciones detectadas
-
-### Auth Service
-
-```txt
-UsuarioFeignClient.java
-```
-
-Permite consultar información de usuarios desde el microservicio de autenticación.
-
----
-
-### Reporte Service (BFF)
-
-```txt
-EstudianteClient.java
-EvaluacionClient.java
-```
-
-El BFF consolida información académica proveniente de múltiples microservicios para entregar respuestas optimizadas al frontend.
-
----
-
 ## Beneficios de OpenFeign
 
-- desacoplamiento
-- comunicación declarativa
-- integración simple con Eureka
-- mantenibilidad
-- balanceo de carga automático
+* Desacoplamiento
+* Comunicación declarativa
+* Integración simple con Eureka
+* Mantenibilidad
+* Balanceo de carga automático
 
 ---
 
-# Configuración Centralizada
+# ⚙️ Configuración Centralizada
 
 El ecosistema implementa Spring Cloud Config para centralizar la configuración de todos los microservicios.
 
@@ -286,120 +197,42 @@ El ecosistema implementa Spring Cloud Config para centralizar la configuración 
 
 ### Config Server
 
-Encargado de distribuir configuraciones dinámicamente a los servicios.
+Encargado de distribuir configuraciones dinámicamente a los servicios a través del puerto `8888`.
 
 ### Config Repo
 
-Repositorio centralizado que contiene:
-
-```txt
-academico-service.yml
-auth-service.yml
-usuario-service.yml
-reporte-service.yml
-```
+Repositorio centralizado que contiene los archivos YAML (`academico-service.yml`, `auth-service.yml`, etc.) con los parámetros específicos de cada servicio.
 
 ---
 
-## Beneficios
-
-- administración centralizada
-- consistencia de configuración
-- cambios dinámicos
-- escalabilidad operativa
-
----
-
-# Seguridad
+# 🔐 Seguridad
 
 La plataforma implementa autenticación basada en JWT (JSON Web Token).
 
 ## Características
 
-- generación de tokens mediante `auth-service`
-- validación desde `api-gateway`
-- seguridad stateless
-- control de acceso basado en roles
-- filtros JWT centralizados
+* Generación de tokens mediante `auth-service`
+* Validación de seguridad centralizada desde `api-gateway`
+* Seguridad stateless
+* Control de acceso basado en roles
+* Comunicación interna segura entre servicios protegidos
 
 ---
 
-## Componentes de Seguridad Detectados
+# 🐳 Docker e Infraestructura Distribuida
 
-```txt
-SecurityConfig.java
-JwtProvider.java
-AuthFilter.java
-```
+El proyecto utiliza Docker para facilitar el despliegue, la orquestación de la red interna y la portabilidad absoluta de los servicios.
 
-La autenticación y autorización se implementa mediante filtros JWT integrados en el API Gateway.
-
----
-
-# Infraestructura Distribuida
-
-## Eureka Server
-
-Permite el registro y descubrimiento dinámico de servicios dentro del ecosistema.
-
-### Puerto
-
-```txt
-8761
-```
-
----
-
-## API Gateway
-
-Punto de entrada único para las solicitudes del cliente.
-
-### Puerto
-
-```txt
-8080
-```
-
----
-
-## Auth Service
-
-Servicio encargado de autenticación y emisión de JWT.
-
-### Puerto
-
-```txt
-8090
-```
-
----
-
-## Usuario Service
-
-Gestión de usuarios institucionales.
-
-### Puerto
-
-```txt
-8092
-```
-
----
-
-# Docker
-
-El proyecto utiliza Docker para facilitar el despliegue y la portabilidad de los servicios.
-
-## docker-compose.yml
+## docker-compose.yml (Ejemplo)
 
 ```yaml
 services:
-
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=colegio_db
     ports:
       - "3306:3306"
     networks:
@@ -420,158 +253,101 @@ networks:
 
 ---
 
-# Ejecución del Proyecto
+# ▶️ Ejecución del Proyecto
 
-## 1. Clonar repositorio
+La arquitectura es 100% inmutable y portable. Docker Compose se encarga de:
+
+* Orquestación de contenedores
+* Creación de red interna
+* Inicialización de servicios
+* Service Discovery
+* Configuración distribuida
+
+---
+
+## 1️⃣ Clonar repositorio
 
 ```bash
-git clone https://github.com/Mayckol2005/FullStack-III
+git clone https://github.com/Mayckol2005/FullStack-III.git
+cd FullStack-III
 ```
 
 ---
 
-## 2. Ingresar al proyecto
+## 2️⃣ Levantar la infraestructura completa
 
 ```bash
-cd FULLSTACK-III
+docker-compose up -d --build
 ```
 
----
-
-## 3. Levantar contenedores Docker
-
-```bash
-docker-compose up --build
-```
+> ⚠️ Nota: En un inicio en frío, los servicios pueden tardar entre 60 y 90 segundos en registrarse completamente en Eureka y quedar disponibles a través del API Gateway.
 
 ---
 
-## 4. Ejecutar microservicios
+# 🌐 Endpoints Base
 
-Desde cada microservicio:
+> ⚠️ IMPORTANTE: Todas las peticiones deben realizarse a través del API Gateway (`http://localhost:8080`).
 
-```bash
-mvn spring-boot:run
-```
-
----
-
-# Endpoints Base
-
-| Servicio | Endpoint Base |
-|---|---|
-| Auth | `/api/auth` |
-| Usuarios | `/api/usuarios` |
-| Estudiantes | `/api/estudiantes` |
-| Evaluaciones | `/api/evaluaciones` |
-| Reportes | `/api/reportes` |
-| Asistencia | `/api/asistencia` |
-| Comunicación | `/api/comunicaciones` |
-| Anotaciones | `/api/anotaciones` |
+| Servicio       | Endpoint Base                              |
+| -------------- | ------------------------------------------ |
+| Auth (Login)   | `http://localhost:8080/api/auth`           |
+| Usuarios       | `http://localhost:8080/api/usuarios`       |
+| Estudiantes    | `http://localhost:8080/api/estudiantes`    |
+| Evaluaciones   | `http://localhost:8080/api/evaluaciones`   |
+| Reportes (BFF) | `http://localhost:8080/api/reportes`       |
+| Asistencia     | `http://localhost:8080/api/asistencia`     |
+| Comunicación   | `http://localhost:8080/api/comunicaciones` |
+| Anotaciones    | `http://localhost:8080/api/anotaciones`    |
 
 ---
 
-# Testing y Calidad de Software
+# 🧪 Testing y Calidad de Software
 
 El proyecto implementa pruebas automatizadas utilizando JUnit 5 y Mockito para garantizar estabilidad y confiabilidad.
 
-## Tecnologías
-
-- JUnit 5
-- Mockito
-- Spring Boot Test
-
----
-
-## Tests implementados
-
-### Reporte Service
-
-```txt
-ReporteServiceTest.java
-```
-
-### Usuario Service
-
-```txt
-UsuarioServiceTest.java
-```
-
----
-
 ## Objetivos de las pruebas
 
-- validar lógica de negocio
-- verificar cálculo de métricas
-- simular respuestas externas con mocks
-- asegurar estabilidad del BFF
-- validar integración entre capas
+* Validar lógica de negocio
+* Verificar cálculo de métricas
+* Simular respuestas externas con mocks
+* Asegurar estabilidad de respuestas agregadas
+* Validar integración entre capas
 
 ---
 
-## Cobertura
+# 🌱 Estrategia de Branching
 
-Las pruebas fueron enfocadas principalmente en:
-- servicios
-- lógica de negocio
-- consolidación de datos
-- respuestas agregadas del BFF
+Se implementó la metodología GitHub Flow con la siguiente estructura:
 
----
+| Rama   | Propósito                            |
+| ------ | ------------------------------------ |
+| main   | Rama de producción estable           |
+| feat/* | Desarrollo de nuevas funcionalidades |
 
-# Estrategia de Branching
-
-Se implementó la metodología GitHub Flow.
-
-## Estructura de ramas
-
-- `main`
-- `feature/*`
+La integración se realiza mediante Pull Requests y resolución manual de conflictos.
 
 ---
 
-## Ejemplos
-
-```txt
-feat/auth-config-setup
-feat/unit-testing-report-service
-feat/comms-service-refactor
-```
-
----
-
-## Flujo de trabajo
-
-- desarrollo en ramas independientes
-- integración mediante Pull Requests
-- revisión colaborativa
-- resolución manual de conflictos
-
----
-
-# Características de Escalabilidad
-
-- servicios desacoplados
-- configuración centralizada
-- descubrimiento dinámico con Eureka
-- arquitectura distribuida
-- separación de responsabilidades
-- infraestructura preparada para escalamiento horizontal
-
----
-
-# Estado del Proyecto
+# 📌 Estado del Proyecto
 
 Proyecto académico correspondiente a la asignatura **Desarrollo Fullstack III**.
 
-Actualmente cuenta con:
+## Estado actual
 
-- arquitectura distribuida funcional
-- microservicios operativos
-- integración mediante Eureka
-- seguridad JWT implementada
-- pruebas unitarias funcionales
-- configuración centralizada
-- comunicación inter-servicio mediante OpenFeign
+* [x] Arquitectura distribuida 100% funcional
+* [x] 13 microservicios operativos bajo Docker
+* [x] Integración dinámica mediante Eureka Server
+* [x] API Gateway enrutando el tráfico
+* [x] Seguridad JWT implementada y estabilizada
+* [x] Configuración centralizada vía Config Server
+* [x] Pruebas unitarias funcionales
+* [x] Comunicación inter-servicio mediante OpenFeign
+* [x] Bypass de Jackson configurado
 
 ---
+
+# 📖 Conclusión
+
+La plataforma Colegio Bernardo O’Higgins representa una solución moderna basada en arquitectura distribuida, aplicando principios de escalabilidad, desacoplamiento y mantenibilidad mediante tecnologías actuales del ecosistema Spring y contenedores Docker.
+
+El proyecto demuestra la implementación práctica de microservicios empresariales, seguridad JWT, descubrimiento de servicios, configuración centralizada y despliegue automatizado en ambientes distribuidos.

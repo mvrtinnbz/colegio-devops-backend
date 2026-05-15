@@ -23,7 +23,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // --- NUEVO: Agregamos la "licuadora" aquí mismo ---
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
