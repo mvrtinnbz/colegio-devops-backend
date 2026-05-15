@@ -50,7 +50,6 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ELIMINAMOS EL @Valid DE AQUÍ PARA QUE ACEPTE ACTUALIZACIONES SIN CONTRASEÑA
     @Operation(summary = "Actualizar un usuario", description = "Sobrescribe los datos de un usuario existente. Mantiene la clave si no se envía.")
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @RequestBody Usuario detalles) {

@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    // Puedes agregar búsquedas personalizadas que sirven para el login después
     Optional<Usuario> findByRut(String rut);
     Optional<Usuario> findByEmail(String email);
 }
