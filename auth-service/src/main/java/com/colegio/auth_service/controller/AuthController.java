@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Importar esto
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,8 +24,8 @@ public class AuthController {
     @Autowired
     private UsuarioFeignClient usuarioFeignClient;
 
-    // Usaremos un codificador instanciado manualmente para asegurar consistencia
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Operation(summary = "Iniciar sesión")
     @PostMapping("/login")
@@ -43,12 +43,19 @@ public class AuthController {
 
             boolean esValida = passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword());
             
-            System.out.println("DEBUG: Email: " + usuarioReal.getEmail());
-            System.out.println("DEBUG: ¿Coinciden? " + esValida);
+            // LOG DE DEPURACIÓN IMPORTANTE
+            System.out.println("DEBUG: Nombre recuperado del usuario: " + usuarioReal.getNombre());
+            System.out.println("DEBUG: ¿Coinciden credenciales? " + esValida);
 
             if (esValida) {
                 String token = jwtProvider.createToken(usuarioReal.getEmail(), usuarioReal.getRol());
-                return ResponseEntity.ok(new TokenDto(token, usuarioReal.getRol(), usuarioReal.getId()));
+                
+                return ResponseEntity.ok(new TokenDto(
+                    token, 
+                    usuarioReal.getRol(), 
+                    usuarioReal.getId(), 
+                    usuarioReal.getNombre()
+                ));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }

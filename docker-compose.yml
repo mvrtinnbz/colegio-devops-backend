@@ -47,8 +47,6 @@ services:
   auth-service:
     build: ./auth-service
     container_name: auth-service
-    ports:
-      - "8090:8090"
     depends_on:
       - mysql-db
       - eureka-server
@@ -58,8 +56,6 @@ services:
   usuario-service:
     build: ./usuario-service
     container_name: usuario-service
-    ports:
-      - "8092:8092"
     depends_on:
       - mysql-db
       - eureka-server
