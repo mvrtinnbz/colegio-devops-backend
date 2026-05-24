@@ -10,12 +10,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Importar esto
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "Seguridad y Accesos", description = "Endpoints para el inicio de sesión y generación de credenciales del colegio")
+@Tag(name = "Seguridad y Accesos", description = "Endpoints para el inicio de sesión")
 public class AuthController {
 
     @Autowired
@@ -24,41 +24,38 @@ public class AuthController {
     @Autowired
     private UsuarioFeignClient usuarioFeignClient;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    // Usaremos un codificador instanciado manualmente para asegurar consistencia
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
-    @Operation(summary = "Iniciar sesión", description = "Valida el correo y contraseña del usuario para otorgarle un Token de acceso al sistema")
+    @Operation(summary = "Iniciar sesión")
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody AuthUserDto authUserDto) {
-
-        if(authUserDto.getEmail() == null || authUserDto.getPassword() == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
+        
+        System.out.println("DEBUG: --- INICIO LOGIN ---");
+        
         try {
-            // 1. Buscamos al usuario real a través de Feign comunicándonos con usuario-service
             UsuarioDto usuarioReal = usuarioFeignClient.buscarPorEmail(authUserDto.getEmail());
 
             if (usuarioReal == null) {
+                System.out.println("DEBUG: Usuario no encontrado");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            // 2. Comparamos la contraseña en texto plano con el Hash de la base de datos
-            if (passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword())) {
+            boolean esValida = passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword());
+            
+            System.out.println("DEBUG: Email: " + usuarioReal.getEmail());
+            System.out.println("DEBUG: ¿Coinciden? " + esValida);
 
-                // 3. Si coinciden, generamos el token con su ROL REAL
+            if (esValida) {
                 String token = jwtProvider.createToken(usuarioReal.getEmail(), usuarioReal.getRol());
-
-                // 4. Enviamos el token Y EL ROL en la respuesta
                 return ResponseEntity.ok(new TokenDto(token, usuarioReal.getRol(), usuarioReal.getId()));
-
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

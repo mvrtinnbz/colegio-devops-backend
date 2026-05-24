@@ -16,18 +16,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Desactivamos CSRF
-                .cors(AbstractHttpConfigurer::disable) // Desactivamos el CORS local
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable) 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/v3/api-docs",
-                                "/v3/api-docs/**",
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/swagger-resources",
-                                "/swagger-resources/**",
-                                "/configuration/ui",
-                                "/configuration/security",
+                                "/v3/api-docs", "/v3/api-docs/**",
+                                "/swagger-ui/**", "/swagger-ui.html",
+                                "/swagger-resources", "/swagger-resources/**",
+                                "/configuration/ui", "/configuration/security",
                                 "/webjars/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
@@ -38,6 +34,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(10);
     }
 }

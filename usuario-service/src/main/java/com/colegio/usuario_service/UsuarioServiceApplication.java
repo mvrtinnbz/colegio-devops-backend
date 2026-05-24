@@ -14,13 +14,11 @@ public class UsuarioServiceApplication {
 
 	@org.springframework.context.annotation.Bean
 	public org.springframework.boot.CommandLineRunner iniciarBaseDeDatos(
-			/* Reemplaza 'UsuarioRepository' con el nombre exacto de tu repositorio si es distinto */
 			com.colegio.usuario_service.repository.UsuarioRepository repository) {
 
 		return args -> {
 			// Verificamos si la tabla está vacía
 			if (repository.count() == 0) {
-				/* Asegúrate de que tu clase Usuario se llame así y tenga estos setters */
 				com.colegio.usuario_service.entity.Usuario admin = new com.colegio.usuario_service.entity.Usuario();
 
 				admin.setRut("11.111.111-1");

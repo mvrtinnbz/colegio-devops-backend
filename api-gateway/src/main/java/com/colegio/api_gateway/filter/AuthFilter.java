@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-
 @Component
 public class AuthFilter implements GlobalFilter, Ordered {
 
@@ -22,40 +21,31 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
+        String method = exchange.getRequest().getMethod().name();
 
-        // 1. Dejamos pasar libremente la ruta de Login
-        if (path.contains("/api/auth/login")) {
+        if ("OPTIONS".equalsIgnoreCase(method) || path.contains("/api/auth/login")) {
             return chain.filter(exchange);
         }
 
-        // 2. Revisamos si trae el header "Authorization"
         if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete(); // Bloqueamos el paso (Error 401)
-        }
-
-        // 3. Extraemos el Token
-        String token = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION).replace("Bearer ", "");
-
-        // 4. Validamos la firma matemática del Token
-        try {
-            // Usamos getBytes() directo, igual que en el auth-service
-            Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
-                    .build()
-                    .parseClaimsJws(token);
-        } catch (Exception e) {
-            // Si el token expiró o es inválido, lo bloqueamos
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
 
-        // Si es válido, lo dejamos pasar
+        String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+        try {
+            Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
+                .build()
+                .parseClaimsJws(authHeader.replace("Bearer ", ""));
+        } catch (Exception e) {
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
+        }
+
         return chain.filter(exchange);
     }
 
     @Override
-    public int getOrder() {
-        return -1; // Alta prioridad
-    }
+    public int getOrder() { return -1; }
 }

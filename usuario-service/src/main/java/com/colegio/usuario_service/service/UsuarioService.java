@@ -17,7 +17,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Inyectamos el encriptador
+    private PasswordEncoder passwordEncoder; 
 
     @CircuitBreaker(name = "usuarioServiceCB", fallbackMethod = "fallbackListarUsuarios")
     public List<Usuario> obtenerTodos() {
@@ -32,7 +32,6 @@ public class UsuarioService {
     }
 
     public List<Usuario> fallbackListarUsuarios(Exception e) {
-        System.out.println("Circuit Breaker activado: El servicio de base de datos no responde.");
         return List.of();
     }
 
@@ -53,7 +52,6 @@ public class UsuarioService {
             usuario.setNombre(usuarioDetalles.getNombre());
             usuario.setEmail(usuarioDetalles.getEmail());
             usuario.setRol(usuarioDetalles.getRol());
-
 
             if (usuarioDetalles.getPassword() != null && !usuarioDetalles.getPassword().isEmpty()) {
                 usuario.setPassword(passwordEncoder.encode(usuarioDetalles.getPassword()));
