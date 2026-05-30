@@ -47,8 +47,6 @@ services:
   auth-service:
     build: ./auth-service
     container_name: auth-service
-    ports:
-      - "8090:8090"
     depends_on:
       - mysql-db
       - eureka-server

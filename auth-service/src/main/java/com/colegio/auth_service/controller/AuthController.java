@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
-@Tag(name = "Seguridad y Accesos", description = "Endpoints para el inicio de sesión y generación de credenciales del colegio")
+@Tag(name = "Seguridad y Accesos", description = "Endpoints para el inicio de sesión")
 public class AuthController {
 
     @Autowired
@@ -28,43 +27,33 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Operation(summary = "Iniciar sesión", description = "Valida el correo y contraseña del usuario para otorgarle un Token de acceso al sistema")
+    @Operation(summary = "Iniciar sesión")
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody AuthUserDto authUserDto) {
-
-        if(authUserDto.getEmail() == null || authUserDto.getPassword() == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
         try {
-            // 1. Buscamos al usuario real a través de Feign comunicándonos con usuario-service
             UsuarioDto usuarioReal = usuarioFeignClient.buscarPorEmail(authUserDto.getEmail());
 
             if (usuarioReal == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            // 2. Comparamos la contraseña en texto plano con el Hash de la base de datos
-            if (passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword())) {
+            boolean esValida = passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword());
 
-                // 3. Si coinciden, generamos el token con su ROL REAL
+            if (esValida) {
                 String token = jwtProvider.createToken(usuarioReal.getEmail(), usuarioReal.getRol());
-
-                // 4. Enviamos el token Y EL ROL en la respuesta
-                return ResponseEntity.ok(new TokenDto(token, usuarioReal.getRol()));
-
+                
+                return ResponseEntity.ok(new TokenDto(
+                    token, 
+                    usuarioReal.getRol(), 
+                    usuarioReal.getId(), 
+                    usuarioReal.getNombre()
+                ));
             } else {
-                // Si la contraseña no coincide
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
         } catch (Exception e) {
-            // Imprimimos el error real en los logs de Docker para no volar a ciegas
-            e.printStackTrace();
-
-            // Si el usuario-service no encuentra el email (devuelve 404), Feign lanza una excepción.
-            // La atrapamos aquí y simplemente devolvemos un 401 Unauthorized por seguridad.
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

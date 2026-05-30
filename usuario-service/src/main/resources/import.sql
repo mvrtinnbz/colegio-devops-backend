@@ -1,0 +1,1 @@
+INSERT INTO usuarios (rut, nombre, email, password, rol) VALUES ('12.345.678-K', 'Profesor Marcelo', 'marcelo@colegio.com', '$2a$10$E2VfB7VbZ6z7mK2N2u0zX1O8R7pE5SjK5bXyV6gE8wM7K6z5t5t5u.', 'PROFESOR');

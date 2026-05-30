@@ -30,7 +30,6 @@ public class EstudianteService {
         return estudianteRepository.findByCursoId(cursoId);
     }
 
-    // --- NUEVO: MÉTODO PARA ACTUALIZAR ---
     public Estudiante actualizarEstudiante(Long id, Estudiante detallesEstudiante) {
         return estudianteRepository.findById(id).map(estudianteExistente -> {
             estudianteExistente.setRut(detallesEstudiante.getRut());
@@ -44,7 +43,6 @@ public class EstudianteService {
         }).orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el ID: " + id));
     }
 
-    // --- NUEVO: MÉTODO PARA ELIMINAR ---
     public void eliminarEstudiante(Long id) {
         estudianteRepository.deleteById(id);
     }

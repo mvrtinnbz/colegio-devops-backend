@@ -4,78 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/anotacion-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asistencia-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/estudiante-service.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/estudiante-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluacion-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificacion-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reporte-service/Dockerfile" afterDir="false" />
+    <list default="true" id="f00753c8-4537-4e82-86a5-8200b87acfcf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academico-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/academico-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academico-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/academico-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/academico-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/academico-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anotacion-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/anotacion-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asistencia-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/asistencia-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/client/UsuarioFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/client/UsuarioFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/dto/UsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/colegio/auth_service/dto/UsuarioDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comunicacion-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/comunicacion-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comunicacion-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/comunicacion-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comunicacion-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/comunicacion-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/academico-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/academico-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/anotacion-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/anotacion-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/api-gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/api-gateway.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/asistencia-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/asistencia-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/auth-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/auth-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/comunicacion-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/comunicacion-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/evaluacion-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/evaluacion-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/notificacion-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/notificacion-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/reporte-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/reporte-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/usuario-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/config-configurations/usuario-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/estudiante-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/estudiante-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/estudiante-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/evaluacion-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/evaluacion-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificacion-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/notificacion-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reporte-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/reporte-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/java/com/colegio/usuario_service/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuario-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/usuario-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-        <option value="Dockerfile" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -83,86 +23,29 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="3DFGIqowSH5HplWKppZVcrVHvNH" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="3DweCYTYvPWAFchbmhjIX2TCaGU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.academico-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.academico-service [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.anotacion-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.anotacion-service [package].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.academico.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.anotacion.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.api.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.asistencia.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.auth.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.comunicacion.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.config-server.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.estudiante.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.evaluacion.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.notificacion.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.reporte.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.usuario.executor&quot;: &quot;Run&quot;,
-    &quot;StatusDashboardGroupingRule&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/auth-config-setup&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fvera/Desktop/FullStack-III/notificacion-service&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;,
-      &quot;oracle&quot;,
-      &quot;mysql_aurora&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\notificacion-service" />
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\anotacion-service" />
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\reporte-service" />
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\asistencia-service" />
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\evaluacion-service" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\fvera\Desktop\FullStack-III\config-server\src\main\resources\config-configurations" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -172,173 +55,42 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
-    <option name="configurationStatuses">
-      <map>
-        <entry key="SpringBootApplicationConfigurationType">
-          <value>
-            <map>
-              <entry key="academico" value="STOPPED" />
-              <entry key="anotacion" value="STOPPED" />
-              <entry key="api" value="STOPPED" />
-              <entry key="asistencia" value="STOPPED" />
-              <entry key="auth" value="STOPPED" />
-              <entry key="comunicacion" value="STOPPED" />
-              <entry key="config-server" value="STOPPED" />
-              <entry key="estudiante" value="STOPPED" />
-              <entry key="evaluacion" value="STOPPED" />
-              <entry key="notificacion" value="STOPPED" />
-              <entry key="reporte" value="STOPPED" />
-              <entry key="usuario" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.config-server">
-    <configuration name="academico" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="academico-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.academico_service.AcademicoServiceApplication" />
+  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.eureka_server.EurekaServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="anotacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="anotacion-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.anotacion_service.AnotacionServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.api_gateway.ApiGatewayApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="asistencia" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="asistencia-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.asistencia_service.AsistenciaServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="auth" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="auth-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.auth_service.AuthServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="comunicacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="comunicacion-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.comunicacion_service.ComunicacionServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="config-server" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="config-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.config_server.ConfigServerApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="estudiante" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="estudiante-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.estudiante_service.EstudianteServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="evaluacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="evaluacion-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.evaluacion_service.EvaluacionServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="notificacion" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="NotificacionServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="notificacion-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.notificacion_service.NotificacionServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="reporte" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="ReporteServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="reporte-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.reporte_service.ReporteServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="usuario" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="usuario-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.colegio.usuario_service.UsuarioServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Spring Boot.academico" />
-      <item itemvalue="Spring Boot.anotacion" />
-      <item itemvalue="Spring Boot.api" />
-      <item itemvalue="Spring Boot.asistencia" />
-      <item itemvalue="Spring Boot.auth" />
-      <item itemvalue="Spring Boot.comunicacion" />
-      <item itemvalue="Spring Boot.config-server" />
-      <item itemvalue="Spring Boot.estudiante" />
-      <item itemvalue="Spring Boot.evaluacion" />
-      <item itemvalue="Spring Boot.notificacion" />
-      <item itemvalue="Spring Boot.reporte" />
-      <item itemvalue="Spring Boot.usuario" />
-    </list>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="962bc15c-e2a0-4bb8-aee4-6fc05d0a80cb" name="Changes" comment="" />
-      <created>1777870327524</created>
+      <changelist id="f00753c8-4537-4e82-86a5-8200b87acfcf" name="Changes" comment="" />
+      <created>1779197434245</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1777870327524</updated>
-      <workItem from="1777870329149" duration="686000" />
-      <workItem from="1777875212216" duration="813000" />
-      <workItem from="1777876082951" duration="429000" />
-      <workItem from="1777876580273" duration="584000" />
-      <workItem from="1777877184256" duration="2333000" />
-      <workItem from="1777930242743" duration="1548000" />
-      <workItem from="1777931815488" duration="6886000" />
-      <workItem from="1777991062847" duration="5846000" />
-      <workItem from="1778012596400" duration="605000" />
-      <workItem from="1778014513098" duration="14468000" />
-      <workItem from="1778085470782" duration="1760000" />
-      <workItem from="1778368690528" duration="7000" />
-      <workItem from="1778379321402" duration="319000" />
-      <workItem from="1778491228582" duration="2000" />
-      <workItem from="1778542753497" duration="14819000" />
+      <updated>1779197434245</updated>
+      <workItem from="1779197436623" duration="479000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
