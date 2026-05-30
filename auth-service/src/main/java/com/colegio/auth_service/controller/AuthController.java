@@ -30,22 +30,14 @@ public class AuthController {
     @Operation(summary = "Iniciar sesión")
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody AuthUserDto authUserDto) {
-        
-        System.out.println("DEBUG: --- INICIO LOGIN ---");
-        
         try {
             UsuarioDto usuarioReal = usuarioFeignClient.buscarPorEmail(authUserDto.getEmail());
 
             if (usuarioReal == null) {
-                System.out.println("DEBUG: Usuario no encontrado");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
             boolean esValida = passwordEncoder.matches(authUserDto.getPassword(), usuarioReal.getPassword());
-            
-            // LOG DE DEPURACIÓN IMPORTANTE
-            System.out.println("DEBUG: Nombre recuperado del usuario: " + usuarioReal.getNombre());
-            System.out.println("DEBUG: ¿Coinciden credenciales? " + esValida);
 
             if (esValida) {
                 String token = jwtProvider.createToken(usuarioReal.getEmail(), usuarioReal.getRol());
@@ -61,7 +53,6 @@ public class AuthController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
