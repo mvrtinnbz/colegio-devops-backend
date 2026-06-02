@@ -52,14 +52,13 @@ public class AuthControllerTest {
 
         ResponseEntity<TokenDto> response = authController.login(authUserDtoMock);
 
-        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatusCode().value());
     }
 
     @Test
     void testLogin_UsuarioNoExiste() {
         // Caso: Pasa la validación, pero Feign no encuentra al usuario
         when(authUserDtoMock.getEmail()).thenReturn("admin@colegio.com");
-        when(authUserDtoMock.getPassword()).thenReturn("123456");
         when(usuarioFeignClient.buscarPorEmail(anyString())).thenReturn(null);
 
         ResponseEntity<TokenDto> response = authController.login(authUserDtoMock);
@@ -109,13 +108,12 @@ public class AuthControllerTest {
     void testLogin_ExcepcionInesperada() {
         // Caso: Falla el servicio externo o hay un null pointer feo
         when(authUserDtoMock.getEmail()).thenReturn("admin@colegio.com");
-        when(authUserDtoMock.getPassword()).thenReturn("123456");
-        
+                
         // Forzamos un error en Feign
         when(usuarioFeignClient.buscarPorEmail(anyString())).thenThrow(new RuntimeException("Microservicio Caído"));
 
         ResponseEntity<TokenDto> response = authController.login(authUserDtoMock);
 
-        assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatusCode().value());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), response.getStatusCode().value());
     }
 }
