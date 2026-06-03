@@ -38,7 +38,7 @@ services:
     build: ./api-gateway
     container_name: api-gateway
     ports:
-      - "8080:8080"
+      - "8080:8080" # Único punto de entrada público: centraliza y valida el tráfico aislando la red interna (Zero Trust).
     depends_on:
       - eureka-server
     networks:
