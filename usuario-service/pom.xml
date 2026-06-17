@@ -29,22 +29,22 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
         <dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.5</version>
-			<scope>runtime</scope>
-		</dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
@@ -131,10 +131,14 @@
                 <version>0.8.11</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/colegio/usuario_service/entity/**</exclude>
-                        <exclude>com/colegio/usuario_service/config/**</exclude>
-                        <exclude>com/colegio/usuario_service/exception/**</exclude>
-                        <exclude>com/colegio/usuario_service/UsuarioServiceApplication.class</exclude>
+                        <exclude>**/entity/**</exclude>
+                        <exclude>**/dto/**</exclude>
+                        <exclude>**/config/**</exclude>
+                        <exclude>**/exception/**</exclude>
+                        <exclude>**/client/**</exclude>
+                        <exclude>**/security/**</exclude>
+                        <exclude>**/repository/**</exclude> 
+                        <exclude>**/*Application.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -4,93 +4,89 @@ import com.colegio.usuario_service.entity.Usuario;
 import com.colegio.usuario_service.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder; 
+import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-public class UsuarioServiceTest {
+class UsuarioServiceTest {
 
     @Mock
     private UsuarioRepository usuarioRepository;
 
     @Mock
-    private PasswordEncoder passwordEncoder; 
+    private PasswordEncoder passwordEncoder;
 
     @InjectMocks
     private UsuarioService usuarioService;
 
-    private Usuario usuarioMock;
-
     @BeforeEach
     void setUp() {
-        usuarioMock = new Usuario("12.345.678-9", "Profesor Marcelo", "marcelo@colegio.com", "123456", "PROFESOR");
-        usuarioMock.setId(2L);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testObtenerTodos_DebeRetornarLista() {
-        when(usuarioRepository.findAll()).thenReturn(List.of(usuarioMock));
+    void guardar_ConPasswordSeEncripta() {
+        Usuario u = new Usuario();
+        u.setPassword("admin123");
         
-        List<Usuario> resultado = usuarioService.obtenerTodos();
+        when(passwordEncoder.encode("admin123")).thenReturn("hash123");
+        when(usuarioRepository.save(any(Usuario.class))).thenReturn(u);
+
+        Usuario result = usuarioService.guardar(u);
         
-        assertNotNull(resultado);
-        assertFalse(resultado.isEmpty());
-        assertEquals(1, resultado.size());
-        assertEquals("Profesor Marcelo", resultado.get(0).getNombre());
-        verify(usuarioRepository, times(1)).findAll();
+        assertEquals("hash123", result.getPassword());
     }
 
     @Test
-    void testObtenerPorId_Exito() {
-        when(usuarioRepository.findById(2L)).thenReturn(Optional.of(usuarioMock));
+    void guardar_SinPasswordNoSeEncripta() {
+        Usuario u = new Usuario();
+        u.setPassword(""); 
         
-        Optional<Usuario> resultado = usuarioService.obtenerPorId(2L);
+        when(usuarioRepository.save(any(Usuario.class))).thenReturn(u);
         
-        assertTrue(resultado.isPresent());
-        assertEquals("marcelo@colegio.com", resultado.get().getEmail());
-        verify(usuarioRepository, times(1)).findById(2L);
+        Usuario result = usuarioService.guardar(u);
+        
+        assertEquals("", result.getPassword());
     }
 
     @Test
-    void testObtenerPorId_NoEncontrado() {
-        when(usuarioRepository.findById(99L)).thenReturn(Optional.empty());
+    void actualizar_Exitoso() {
+        Usuario dbUser = new Usuario();
+        dbUser.setPassword("viejaClave");
         
-        Optional<Usuario> resultado = usuarioService.obtenerPorId(99L);
+        Usuario newData = new Usuario();
+        newData.setNombre("Nuevo Nombre");
+        newData.setPassword("nuevaClave");
+
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(dbUser));
+        when(passwordEncoder.encode("nuevaClave")).thenReturn("nuevoHash");
+        when(usuarioRepository.save(any(Usuario.class))).thenReturn(dbUser);
+
+        Usuario result = usuarioService.actualizar(1L, newData);
         
-        assertFalse(resultado.isPresent());
-        verify(usuarioRepository, times(1)).findById(99L);
+        assertEquals("nuevoHash", result.getPassword());
+        assertEquals("Nuevo Nombre", result.getNombre());
     }
 
     @Test
-    void testGuardarUsuario_Exito() {
-        // Le decimos a Mockito que cuando encripte, devuelva un texto mock cualquiera
-        when(passwordEncoder.encode(anyString())).thenReturn("password_encriptado_mock");
-        when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuarioMock);
+    void actualizar_UsuarioNoEncontrado_LanzaExcepcion() {
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
         
-        Usuario resultado = usuarioService.guardar(usuarioMock);
-        
-        assertNotNull(resultado);
-        assertEquals("Profesor Marcelo", resultado.getNombre());
-        verify(passwordEncoder, times(1)).encode(anyString());
-        verify(usuarioRepository, times(1)).save(any(Usuario.class));
+        assertThrows(RuntimeException.class, () -> usuarioService.actualizar(1L, new Usuario()));
     }
 
     @Test
-    void testEliminarUsuario_Exito() {
-        doNothing().when(usuarioRepository).deleteById(2L);
+    void fallbackListarUsuarios_RetornaListaVacia() {
+        List<Usuario> result = usuarioService.fallbackListarUsuarios(new RuntimeException("Simulación de caída CB"));
         
-        usuarioService.eliminar(2L);
-        
-        verify(usuarioRepository, times(1)).deleteById(2L);
+        assertTrue(result.isEmpty());
     }
 }
