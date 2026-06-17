@@ -23,7 +23,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         String method = exchange.getRequest().getMethod().name();
 
-        if ("OPTIONS".equalsIgnoreCase(method) || path.contains("/api/auth/login")) {
+        if ("OPTIONS".equalsIgnoreCase(method) || path.contains("/api/auth/login") || path.contains("/v3/api-docs") || path.contains("/swagger-ui")) {
             return chain.filter(exchange);
         }
 
