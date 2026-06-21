@@ -35,6 +35,60 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      
+      - name: Build jars backend
+        run: |
+          cd config-server
+          mvn clean package -DskipTests
+          cd ..
+
+            cd eureka-server
+            mvn clean package -DskipTests
+            cd ..
+
+            cd api-gateway
+            mvn clean package -DskipTests
+            cd ..
+
+            cd auth-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd usuario-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd academico-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd estudiante-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd asistencia-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd evaluacion-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd anotacion-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd comunicacion-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd notificacion-service
+            mvn clean package -DskipTests
+            cd ..
+
+            cd reporte-service
+            mvn clean package -DskipTests
+            cd ..
 
       - name: Build, tag y push images backend
         run: |
