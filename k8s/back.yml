@@ -1,0 +1,776 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+  labels:
+    app: mysql-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-db
+  template:
+    metadata:
+      labels:
+        app: mysql-db
+    spec:
+      containers:
+        - name: mysql-db
+          image: mysql:8.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: MYSQL_DATABASE
+              value: colegio_db
+            - name: MYSQL_ROOT_HOST
+              value: "%"
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql-db
+  ports:
+    - name: mysql
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+  labels:
+    app: config-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+        - name: config-server
+          image: ${ECR_CONFIG}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8888
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-service
+spec:
+  type: ClusterIP
+  selector:
+    app: config-server
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8888
+      targetPort: 8888
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka-server
+  labels:
+    app: eureka-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eureka-server
+  template:
+    metadata:
+      labels:
+        app: eureka-server
+    spec:
+      containers:
+        - name: eureka-server
+          image: ${ECR_EUREKA}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8761
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: EUREKA_CLIENT_REGISTER_WITH_EUREKA
+              value: "false"
+            - name: EUREKA_CLIENT_FETCH_REGISTRY
+              value: "false"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-service
+spec:
+  type: ClusterIP
+  selector:
+    app: eureka-server
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8761
+      targetPort: 8761
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: ${ECR_API}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  labels:
+    app: auth-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+        - name: auth-service
+          image: ${ECR_AUTH}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  type: ClusterIP
+  selector:
+    app: auth-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuario-service
+  labels:
+    app: usuario-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: usuario-service
+  template:
+    metadata:
+      labels:
+        app: usuario-service
+    spec:
+      containers:
+        - name: usuario-service
+          image: ${ECR_USUARIO}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usuario-service
+spec:
+  type: ClusterIP
+  selector:
+    app: usuario-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: academico-service
+  labels:
+    app: academico-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: academico-service
+  template:
+    metadata:
+      labels:
+        app: academico-service
+    spec:
+      containers:
+        - name: academico-service
+          image: ${ECR_ACADEMICO}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: academico-service
+spec:
+  type: ClusterIP
+  selector:
+    app: academico-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: estudiante-service
+  labels:
+    app: estudiante-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: estudiante-service
+  template:
+    metadata:
+      labels:
+        app: estudiante-service
+    spec:
+      containers:
+        - name: estudiante-service
+          image: ${ECR_ESTUDIANTE}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: estudiante-service
+spec:
+  type: ClusterIP
+  selector:
+    app: estudiante-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asistencia-service
+  labels:
+    app: asistencia-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: asistencia-service
+  template:
+    metadata:
+      labels:
+        app: asistencia-service
+    spec:
+      containers:
+        - name: asistencia-service
+          image: ${ECR_ASISTENCIA}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: asistencia-service
+spec:
+  type: ClusterIP
+  selector:
+    app: asistencia-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evaluacion-service
+  labels:
+    app: evaluacion-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: evaluacion-service
+  template:
+    metadata:
+      labels:
+        app: evaluacion-service
+    spec:
+      containers:
+        - name: evaluacion-service
+          image: ${ECR_EVALUACION}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: evaluacion-service
+spec:
+  type: ClusterIP
+  selector:
+    app: evaluacion-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anotacion-service
+  labels:
+    app: anotacion-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: anotacion-service
+  template:
+    metadata:
+      labels:
+        app: anotacion-service
+    spec:
+      containers:
+        - name: anotacion-service
+          image: ${ECR_ANOTACION}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anotacion-service
+spec:
+  type: ClusterIP
+  selector:
+    app: anotacion-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comunicacion-service
+  labels:
+    app: comunicacion-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: comunicacion-service
+  template:
+    metadata:
+      labels:
+        app: comunicacion-service
+    spec:
+      containers:
+        - name: comunicacion-service
+          image: ${ECR_COMUNICACION}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/colegio_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comunicacion-service
+spec:
+  type: ClusterIP
+  selector:
+    app: comunicacion-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notificacion-service
+  labels:
+    app: notificacion-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notificacion-service
+  template:
+    metadata:
+      labels:
+        app: notificacion-service
+    spec:
+      containers:
+        - name: notificacion-service
+          image: ${ECR_NOTIFICACION}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notificacion-service
+spec:
+  type: ClusterIP
+  selector:
+    app: notificacion-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reporte-service
+  labels:
+    app: reporte-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reporte-service
+  template:
+    metadata:
+      labels:
+        app: reporte-service
+    spec:
+      containers:
+        - name: reporte-service
+          image: ${ECR_REPORTE}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server-service:8888/
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-server-service:8888
+            - name: EUREKA_URL
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+              value: http://eureka-service:8761/eureka/
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reporte-service
+spec:
+  type: ClusterIP
+  selector:
+    app: reporte-service
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
