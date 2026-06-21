@@ -35,63 +35,36 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      
+
       - name: Build jars backend
         run: |
-          cd config-server
-          mvn clean package -DskipTests
-          cd ..
+          set -e
 
-            cd eureka-server
+          for service in \
+            config-server \
+            eureka-server \
+            api-gateway \
+            auth-service \
+            usuario-service \
+            academico-service \
+            estudiante-service \
+            asistencia-service \
+            evaluacion-service \
+            anotacion-service \
+            comunicacion-service \
+            notificacion-service \
+            reporte-service
+          do
+            echo "Compilando $service"
+            cd "$service"
             mvn clean package -DskipTests
             cd ..
-
-            cd api-gateway
-            mvn clean package -DskipTests
-            cd ..
-
-            cd auth-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd usuario-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd academico-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd estudiante-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd asistencia-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd evaluacion-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd anotacion-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd comunicacion-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd notificacion-service
-            mvn clean package -DskipTests
-            cd ..
-
-            cd reporte-service
-            mvn clean package -DskipTests
-            cd ..
+          done
 
       - name: Build, tag y push images backend
         run: |
+          set -e
+
           docker build -t ${{ secrets.ECR_CONFIG }}:${{ env.IMAGE_TAG }} ./config-server
           docker push ${{ secrets.ECR_CONFIG }}:${{ env.IMAGE_TAG }}
 
@@ -137,7 +110,7 @@ jobs:
             --name ${{ env.EKS_CLUSTER_NAME }} \
             --region ${{ env.AWS_REGION }}
 
-      - name: Deploy EKS
+      - name: Deploy Backend EKS
         env:
           ECR_CONFIG: ${{ secrets.ECR_CONFIG }}
           ECR_EUREKA: ${{ secrets.ECR_EUREKA }}
@@ -172,7 +145,9 @@ jobs:
 
           kubectl apply -f k8s/back-rendered.yml
 
-      - name: Kubernetes pods y svc
+      - name: Verificar despliegue backend
         run: |
+          kubectl get deployment -o name | xargs -r -n1 kubectl rollout status --timeout=240s
           kubectl get pods
           kubectl get svc
+          kubectl get endpoints
