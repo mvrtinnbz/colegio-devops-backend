@@ -71,7 +71,7 @@ metadata:
   labels:
     app: config-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: config-server
@@ -130,7 +130,7 @@ metadata:
   labels:
     app: eureka-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: eureka-server
@@ -178,7 +178,7 @@ metadata:
   labels:
     app: api-gateway
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api-gateway
@@ -230,7 +230,7 @@ metadata:
   labels:
     app: auth-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: auth-service
@@ -288,7 +288,7 @@ metadata:
   labels:
     app: usuario-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: usuario-service
@@ -346,7 +346,7 @@ metadata:
   labels:
     app: academico-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: academico-service
@@ -404,7 +404,7 @@ metadata:
   labels:
     app: estudiante-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: estudiante-service
@@ -462,7 +462,7 @@ metadata:
   labels:
     app: asistencia-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: asistencia-service
@@ -520,7 +520,7 @@ metadata:
   labels:
     app: evaluacion-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: evaluacion-service
@@ -578,7 +578,7 @@ metadata:
   labels:
     app: anotacion-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: anotacion-service
@@ -636,7 +636,7 @@ metadata:
   labels:
     app: comunicacion-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: comunicacion-service
@@ -694,7 +694,7 @@ metadata:
   labels:
     app: notificacion-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: notificacion-service
@@ -746,7 +746,7 @@ metadata:
   labels:
     app: reporte-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: reporte-service
