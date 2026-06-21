@@ -30,6 +30,12 @@ jobs:
       - name: Login Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
       - name: Build, tag y push images backend
         run: |
           docker build -t ${{ secrets.ECR_CONFIG }}:${{ env.IMAGE_TAG }} ./config-server
