@@ -1,4 +1,4 @@
-name: Deploy Colegio Backend Amazon EKS
+name: Deploy Colegio Backend Amazon EKS v2
 
 on:
   push:
