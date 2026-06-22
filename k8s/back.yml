@@ -246,7 +246,7 @@ spec:
         image: ${ECR_AUTH}:${IMAGE_TAG}
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8090
         env:
         - name: SPRING_CONFIG_IMPORT
           value: optional:configserver:http://config-server-service:8888/
@@ -304,7 +304,7 @@ spec:
         image: ${ECR_USUARIO}:${IMAGE_TAG}
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8092
         env:
         - name: SPRING_CONFIG_IMPORT
           value: optional:configserver:http://config-server-service:8888/
@@ -338,7 +338,11 @@ spec:
   - name: http
     protocol: TCP
     port: 8080
-    targetPort: 8080
+    targetPort: 8092
+  - name: http-8092
+    protocol: TCP
+    port: 8092
+    targetPort: 8092
 
 ---
 apiVersion: apps/v1
